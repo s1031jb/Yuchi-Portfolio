@@ -2,17 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePointer2, Layers, Layout, PenTool } from 'lucide-react';
 
 // ------------------------------------------------------------------
-// ★ 圖片路徑設定 ★
+// ★ 圖片設定 ★
 // ------------------------------------------------------------------
 
-// 方法 A (目前使用 - 最穩定): 使用您提供的 GitHub 圖片連結
-// 這可以確保無論在預覽或部署後都能看到圖片
-//const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
+// [本地開發請打開這行]: 
+// import profileImage from './assets/yuchi.png';
 
-// 方法 B (本地檔案 - 進階): 
-// 如果您堅持要用本地檔案，請確保檔案在 src/assets/yuchi.png
-// 然後「取消註解」下面這一行，並「註解掉」上面的 const profileImage
-import profileImage from './assets/yuchi.png'; 
+// [線上預覽暫時使用這行]:
+const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -41,6 +38,7 @@ const Portfolio = () => {
   const personalInfo = {
     name: "Yuchi Chang",
     title: "Designing the future of multi-device interaction.",
+    // subtitle 已移除
     bio: "Senior Interaction Designer specializing in peripheral software ecosystems. I craft intuitive, multi-device experiences that make keyboards, mice, hubs, and styluses feel seamless and delightful.",
     phone: "+886 958 644 522",
     email: "s1031jb@gmail.com",
@@ -186,7 +184,7 @@ const Portfolio = () => {
   );
 
   const Footer = () => (
-    <footer className="bg-gray-50 border-t border-gray-200 py-12 mt-auto">
+    <footer className="bg-gray-50 border-t border-gray-200 py-12 mt-auto z-20 relative bg-white">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
           <h3 className="font-bold text-gray-900 text-lg">Yuchi Chang</h3>
@@ -208,17 +206,17 @@ const Portfolio = () => {
   );
 
   const HomeSection = () => (
-    <div className="min-h-screen flex flex-col justify-center pt-20">
-      <div className="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
-        {/* Text Content */}
-        <div className="order-2 md:order-1 space-y-8 animate-fade-in-up">
+    <div className="min-h-screen flex flex-col pt-24"> 
+      
+      <div className="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 flex-grow items-end">
+        
+        {/* Text Content - 移除了 subtitle */}
+        <div className="order-2 md:order-1 space-y-8 animate-fade-in-up self-center pb-24">
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
               Designing the future of <span className="text-blue-600">multi-device</span> interaction.
             </h1>
-            <h2 className="text-xl md:text-2xl text-gray-500 font-medium">
-              {personalInfo.subtitle}
-            </h2>
+            {/* 原本的副標題已刪除 */}
           </div>
           <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
             {personalInfo.bio}
@@ -240,16 +238,12 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="order-1 md:order-2 relative h-[400px] md:h-[600px] w-full flex items-center justify-center z-10">
+        {/* Hero Image 區塊 */}
+        <div className="order-1 md:order-2 relative w-full flex items-end justify-center z-10 h-[600px] md:h-[750px] -mb-px">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
           
-          <div className="relative w-full h-full overflow-hidden rounded-[3rem]">
+          <div className="relative w-full h-full overflow-hidden rounded-t-[3rem] rounded-b-none shadow-none">
              <div className="w-full h-full relative bg-gray-50">
-                {/* 圖片載入邏輯：
-                  這裡使用了 profileImage 變數，目前指向 GitHub 連結。
-                  如果載入失敗，會顯示錯誤訊息和除錯建議。
-                */}
                 <img 
                   src={personalInfo.image} 
                   alt="Yuchi Chang" 
@@ -258,10 +252,7 @@ const Portfolio = () => {
                   onError={(e) => {
                     console.error("Image load failed:", e);
                     e.target.style.display = 'none';
-                    e.target.parentNode.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400 bg-gray-100 border-2 border-dashed p-4 text-center text-sm" style="word-break: break-all;">
-                      <span>Image Load Error</span>
-                      <span class="text-xs mt-2 text-red-500">Check the profileImage URL in App.jsx</span>
-                    </div>`;
+                    e.target.parentNode.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400 bg-gray-100 border-2 border-dashed p-4 text-center text-sm">Image Load Error</div>`;
                   }}
                 />
              </div>
