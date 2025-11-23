@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePointer2, Layers, Layout, PenTool } from 'lucide-react';
 
 // ------------------------------------------------------------------
-// 圖片路徑：更新為您提供的 GitHub 連結
+// ★ 圖片路徑設定 (Google Style) ★
+// 
+// 既然您已將 yuchi.png 放入 public 資料夾
+// 這裡直接使用 "/" 開頭的絕對路徑即可
 // ------------------------------------------------------------------
-const profileImage = "https://github.com/user-attachments/assets/b62f2b9d-8050-48bc-858c-a147a76478bb";
+const profileImage = "/yuchi.png";
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -39,7 +42,7 @@ const Portfolio = () => {
     phone: "+886 958 644 522",
     email: "s1031jb@gmail.com",
     linkedin: "linkedin.com/in/yuchichang", 
-    image: profileImage
+    image: profileImage 
   };
 
   const projects = [
@@ -171,7 +174,9 @@ const Portfolio = () => {
             </button>
           ))}
         </div>
+        {/* Mobile Nav Toggle could go here */}
         <div className="md:hidden flex space-x-4 text-sm">
+           {/* Simplified mobile nav for this demo */}
            <button onClick={() => setActiveTab('projects')} className="text-gray-600">Projects</button>
            <button onClick={() => setActiveTab('contact')} className="text-gray-600">Contact</button>
         </div>
@@ -234,28 +239,31 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Hero Image - Google Style (Fixed Visibility) */}
-        {/* 1. 移除了 animate-scale-in 等進場動畫，防止卡住 */}
-        {/* 2. 移除了所有 mask 遮罩 div */}
-        {/* 3. 加上了 z-10 確保層級 */}
+        {/* Hero Image - Simple & Clean */}
+        {/* 這裡的 z-10 確保圖片不會被背景動畫遮擋。
+           移除了 mask 遮罩和進場動畫，確保圖片立即顯示。
+        */}
         <div className="order-1 md:order-2 relative h-[400px] md:h-[600px] w-full flex items-center justify-center z-10">
-          {/* Blob Background for depth - 放在 z-0 */}
+          {/* Blob Background */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
           
           <div className="relative w-full h-full overflow-hidden rounded-[3rem]">
-             <div className="w-full h-full relative bg-gray-50"> {/* 增加一個淺灰背景，如果圖片讀取慢至少有個底 */}
+             <div className="w-full h-full relative bg-gray-50">
                 <img 
                   src={personalInfo.image} 
                   alt="Yuchi Chang" 
-                  className="w-full h-full object-cover object-top block" // 加上 block 確保不被視為 inline
-                  style={{ opacity: 1 }} // 強制不透明
+                  className="w-full h-full object-cover object-top block"
+                  style={{ opacity: 1 }}
+                  // 除錯用：如果圖片還是沒顯示，這個區塊會出現並提示您
                   onError={(e) => {
                     console.error("Image load failed:", e);
                     e.target.style.display = 'none';
-                    e.target.parentNode.innerHTML = `<div class="flex items-center justify-center h-full text-gray-400 bg-gray-100 border-2 border-dashed">Image Path Error: ${personalInfo.image}</div>`;
+                    e.target.parentNode.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400 bg-gray-100 border-2 border-dashed p-4 text-center text-sm" style="word-break: break-all;">
+                      <span>Image Path Error: ${personalInfo.image}</span>
+                      <span class="text-xs mt-2 text-blue-500">Checking public/yuchi.png...</span>
+                    </div>`;
                   }}
                 />
-                {/* 遮罩已完全移除 */}
              </div>
           </div>
         </div>
