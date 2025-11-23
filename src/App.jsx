@@ -2,19 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePointer2, Layers, Layout, PenTool } from 'lucide-react';
 
 // ------------------------------------------------------------------
-// ★ 圖片路徑設定 (Google Style) ★
+// ★ GitHub Pages 路徑設定 (請手動修改這裡) ★
 // 
-// 既然您已將 yuchi.png 放入 public 資料夾
-// 這裡直接使用 "/" 開頭的絕對路徑即可
+// 1. 如果是【線上預覽】或【本地開發】：
+//    請保持為 '/'
+//
+// 2. 如果是【部署到 GitHub Pages】：
+//    請將 '/' 改為您的 Repository 名稱，前後都要加斜線。
+//    例如您的 Repo 叫做 "my-portfolio"，這裡就改成 '/my-portfolio/'
 // ------------------------------------------------------------------
-const profileImage = "/yuchi.png";
+const repoBaseUrl = '/'; 
+
+// 自動組合圖片路徑 (這行不用動)
+// 邏輯：如果 repoBaseUrl 是 '/'，路徑就是 '/yuchi.png'
+// 如果 repoBaseUrl 是 '/portfolio/'，路徑就是 '/portfolio/yuchi.png'
+const profileImage = `${repoBaseUrl === '/' ? '' : repoBaseUrl}yuchi.png`;
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -23,7 +31,6 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Scroll to top on tab change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activeTab, selectedProject]);
@@ -239,28 +246,26 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Hero Image - Simple & Clean */}
-        {/* 這裡的 z-10 確保圖片不會被背景動畫遮擋。
-           移除了 mask 遮罩和進場動畫，確保圖片立即顯示。
-        */}
+        {/* Hero Image */}
         <div className="order-1 md:order-2 relative h-[400px] md:h-[600px] w-full flex items-center justify-center z-10">
           {/* Blob Background */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
           
           <div className="relative w-full h-full overflow-hidden rounded-[3rem]">
              <div className="w-full h-full relative bg-gray-50">
+                {/* 圖片載入邏輯：使用組合後的路徑 */}
                 <img 
                   src={personalInfo.image} 
                   alt="Yuchi Chang" 
                   className="w-full h-full object-cover object-top block"
                   style={{ opacity: 1 }}
-                  // 除錯用：如果圖片還是沒顯示，這個區塊會出現並提示您
                   onError={(e) => {
                     console.error("Image load failed:", e);
                     e.target.style.display = 'none';
                     e.target.parentNode.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400 bg-gray-100 border-2 border-dashed p-4 text-center text-sm" style="word-break: break-all;">
                       <span>Image Path Error: ${personalInfo.image}</span>
-                      <span class="text-xs mt-2 text-blue-500">Checking public/yuchi.png...</span>
+                      <span class="text-xs mt-2 text-blue-500">Current base: ${repoBaseUrl}</span>
+                      <span class="text-xs text-gray-400">Check 'repoBaseUrl' variable in App.jsx</span>
                     </div>`;
                   }}
                 />
@@ -279,7 +284,6 @@ const Portfolio = () => {
       </div>
 
       <div className="space-y-16">
-        {/* Experience */}
         <section>
           <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-3">
             <span className="w-2 h-8 bg-gray-200 rounded-full block"></span>
@@ -300,7 +304,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Education */}
         <section>
           <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-3">
              <span className="w-2 h-8 bg-gray-200 rounded-full block"></span>
@@ -317,7 +320,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Skills */}
         <section>
           <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-3">
              <span className="w-2 h-8 bg-gray-200 rounded-full block"></span>
