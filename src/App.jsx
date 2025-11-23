@@ -6,10 +6,10 @@ import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePoi
 // ------------------------------------------------------------------
 
 // [本地開發請打開這行]: 
-// import profileImage from './assets/yuchi.png';
+import profileImage from './assets/yuchi.png';
 
 // [線上預覽暫時使用這行]:
-const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
+//const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
