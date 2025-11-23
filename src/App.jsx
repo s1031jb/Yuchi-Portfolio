@@ -2,21 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePointer2, Layers, Layout, PenTool } from 'lucide-react';
 
 // ------------------------------------------------------------------
-// ★ GitHub Pages 路徑設定 (請手動修改這裡) ★
-// 
-// 1. 如果是【線上預覽】或【本地開發】：
-//    請保持為 '/'
-//
-// 2. 如果是【部署到 GitHub Pages】：
-//    請將 '/' 改為您的 Repository 名稱，前後都要加斜線。
-//    例如您的 Repo 叫做 "my-portfolio"，這裡就改成 '/my-portfolio/'
+// ★ 圖片路徑設定 ★
 // ------------------------------------------------------------------
-const repoBaseUrl = '/Yuchi-Portfolio/'; 
 
-// 自動組合圖片路徑 (這行不用動)
-// 邏輯：如果 repoBaseUrl 是 '/'，路徑就是 '/yuchi.png'
-// 如果 repoBaseUrl 是 '/portfolio/'，路徑就是 '/portfolio/yuchi.png'
-const profileImage = `${repoBaseUrl === '/' ? '' : repoBaseUrl}yuchi.png`;
+// 方法 A (目前使用 - 最穩定): 使用您提供的 GitHub 圖片連結
+// 這可以確保無論在預覽或部署後都能看到圖片
+const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
+
+// 方法 B (本地檔案 - 進階): 
+// 如果您堅持要用本地檔案，請確保檔案在 src/assets/yuchi.png
+// 然後「取消註解」下面這一行，並「註解掉」上面的 const profileImage
+// import profileImage from './assets/yuchi.png'; 
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -181,9 +177,7 @@ const Portfolio = () => {
             </button>
           ))}
         </div>
-        {/* Mobile Nav Toggle could go here */}
         <div className="md:hidden flex space-x-4 text-sm">
-           {/* Simplified mobile nav for this demo */}
            <button onClick={() => setActiveTab('projects')} className="text-gray-600">Projects</button>
            <button onClick={() => setActiveTab('contact')} className="text-gray-600">Contact</button>
         </div>
@@ -248,12 +242,14 @@ const Portfolio = () => {
 
         {/* Hero Image */}
         <div className="order-1 md:order-2 relative h-[400px] md:h-[600px] w-full flex items-center justify-center z-10">
-          {/* Blob Background */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
           
           <div className="relative w-full h-full overflow-hidden rounded-[3rem]">
              <div className="w-full h-full relative bg-gray-50">
-                {/* 圖片載入邏輯：使用組合後的路徑 */}
+                {/* 圖片載入邏輯：
+                  這裡使用了 profileImage 變數，目前指向 GitHub 連結。
+                  如果載入失敗，會顯示錯誤訊息和除錯建議。
+                */}
                 <img 
                   src={personalInfo.image} 
                   alt="Yuchi Chang" 
@@ -263,9 +259,8 @@ const Portfolio = () => {
                     console.error("Image load failed:", e);
                     e.target.style.display = 'none';
                     e.target.parentNode.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400 bg-gray-100 border-2 border-dashed p-4 text-center text-sm" style="word-break: break-all;">
-                      <span>Image Path Error: ${personalInfo.image}</span>
-                      <span class="text-xs mt-2 text-blue-500">Current base: ${repoBaseUrl}</span>
-                      <span class="text-xs text-gray-400">Check 'repoBaseUrl' variable in App.jsx</span>
+                      <span>Image Load Error</span>
+                      <span class="text-xs mt-2 text-red-500">Check the profileImage URL in App.jsx</span>
                     </div>`;
                   }}
                 />
@@ -284,6 +279,7 @@ const Portfolio = () => {
       </div>
 
       <div className="space-y-16">
+        {/* Experience */}
         <section>
           <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-3">
             <span className="w-2 h-8 bg-gray-200 rounded-full block"></span>
@@ -304,6 +300,7 @@ const Portfolio = () => {
           </div>
         </section>
 
+        {/* Education */}
         <section>
           <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-3">
              <span className="w-2 h-8 bg-gray-200 rounded-full block"></span>
@@ -320,6 +317,7 @@ const Portfolio = () => {
           </div>
         </section>
 
+        {/* Skills */}
         <section>
           <h3 className="text-2xl font-semibold text-gray-800 mb-8 flex items-center gap-3">
              <span className="w-2 h-8 bg-gray-200 rounded-full block"></span>
