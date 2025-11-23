@@ -11,7 +11,7 @@ import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePoi
 //    請將 '/' 改為您的 Repository 名稱，前後都要加斜線。
 //    例如您的 Repo 叫做 "my-portfolio"，這裡就改成 '/my-portfolio/'
 // ------------------------------------------------------------------
-const repoBaseUrl = '/'; 
+const repoBaseUrl = '/yuchi-portfolio/'; 
 
 // 自動組合圖片路徑 (這行不用動)
 // 邏輯：如果 repoBaseUrl 是 '/'，路徑就是 '/yuchi.png'
