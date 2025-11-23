@@ -7,12 +7,12 @@ import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePoi
 
 // 方法 A (目前使用 - 最穩定): 使用您提供的 GitHub 圖片連結
 // 這可以確保無論在預覽或部署後都能看到圖片
-const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
+//const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 // 方法 B (本地檔案 - 進階): 
 // 如果您堅持要用本地檔案，請確保檔案在 src/assets/yuchi.png
 // 然後「取消註解」下面這一行，並「註解掉」上面的 const profileImage
-// import profileImage from './assets/yuchi.png'; 
+import profileImage from './assets/yuchi.png'; 
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
