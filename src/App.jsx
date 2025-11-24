@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePointer2, Layers, Layout, PenTool } from 'lucide-react';
 
 // ------------------------------------------------------------------
-// ★ 圖片設定 ★
+// ★ 圖片設定 (重要) ★
 // ------------------------------------------------------------------
 
-// [本地開發請打開這行]: 
+// [本地開發請打開這行]:
 import profileImage from './assets/yuchi.png';
 
-// [線上預覽暫時使用這行]:
-//const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
+// [線上預覽暫時使用這行 - 讓您現在能看到畫面]:
+// const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
+
+// ------------------------------------------------------------------
+// ★ 影片路徑設定 (Public 模式) ★
+// ------------------------------------------------------------------
+const repoBaseUrl = '/yuchi-portfolio/'; 
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -38,7 +43,6 @@ const Portfolio = () => {
   const personalInfo = {
     name: "Yuchi Chang",
     title: "Designing the future of multi-device interaction.",
-    // subtitle 已移除
     bio: "Senior Interaction Designer specializing in peripheral software ecosystems. I craft intuitive, multi-device experiences that make keyboards, mice, hubs, and styluses feel seamless and delightful.",
     phone: "+886 958 644 522",
     email: "s1031jb@gmail.com",
@@ -54,7 +58,9 @@ const Portfolio = () => {
       tagline: "Designing a Smarter Cross-Screen Experience",
       icon: <Layers className="w-6 h-6" />,
       description: "Redefined how users move continuously between devices. By abstracting complex networking protocols into a simple 'push past the edge' interaction, we reduced cognitive load and setup time by 40%.",
-      details: "Focused on the 'handover' moment between operating systems. Created motion studies for cursor transitions and file drag-and-drop visualizations that feel physical rather than digital."
+      details: "Focused on the 'handover' moment between operating systems. Created motion studies for cursor transitions and file drag-and-drop visualizations that feel physical rather than digital.",
+      // 影片若在 public 資料夾，使用字串檔名
+      video: "Cross_Device_Interaction_Animation_Concept.mp4"
     },
     {
       id: 2,
@@ -207,16 +213,12 @@ const Portfolio = () => {
 
   const HomeSection = () => (
     <div className="min-h-screen flex flex-col pt-24"> 
-      
       <div className="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 flex-grow items-end">
-        
-        {/* Text Content - 移除了 subtitle */}
         <div className="order-2 md:order-1 space-y-8 animate-fade-in-up self-center pb-24">
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
               Designing the future of <span className="text-blue-600">multi-device</span> interaction.
             </h1>
-            {/* 原本的副標題已刪除 */}
           </div>
           <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
             {personalInfo.bio}
@@ -238,10 +240,8 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Hero Image 區塊 */}
         <div className="order-1 md:order-2 relative w-full flex items-end justify-center z-10 h-[600px] md:h-[750px] -mb-px">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
-          
           <div className="relative w-full h-full overflow-hidden rounded-t-[3rem] rounded-b-none shadow-none">
              <div className="w-full h-full relative bg-gray-50">
                 <img 
@@ -400,10 +400,27 @@ const Portfolio = () => {
               </p>
             </section>
             
-            {/* Placeholder for visual assets */}
-            <div className="w-full h-64 bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400 mt-8 border-2 border-dashed border-gray-200">
-              [Visual assets / Video Demo Placeholder]
-            </div>
+            {/* 影片播放區域 */}
+            {project.video ? (
+              <div className="w-full rounded-2xl mt-8 overflow-hidden shadow-md border border-gray-100">
+                <video 
+                  className="w-full h-auto block"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  {/* 自動偵測 repoBaseUrl，確保影片路徑正確 */}
+                  <source src={`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            ) : (
+              <div className="w-full h-64 bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400 mt-8 border-2 border-dashed border-gray-200">
+                [Visual assets / Video Demo Placeholder]
+              </div>
+            )}
           </div>
           
           <div className="md:col-span-1 space-y-6">
