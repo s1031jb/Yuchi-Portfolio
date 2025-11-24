@@ -2,19 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePointer2, Layers, Layout, PenTool } from 'lucide-react';
 
 // ------------------------------------------------------------------
-// ★ 圖片設定 (重要) ★
+// ★ 圖片設定 (關鍵步驟) ★
 // ------------------------------------------------------------------
 
-// [本地開發請打開這行]:
+// 步驟 A (給您的 GitHub/本地專案用)：
+// 請將下面這行「取消註解」 (把前面的 // 拿掉)，這樣打包時才會把圖片打包進去
 import profileImage from './assets/yuchi.png';
 
-// [線上預覽暫時使用這行 - 讓您現在能看到畫面]:
+// 步驟 B (給目前的線上預覽用)：
+// 為了讓您現在能看到畫面，我暫時用網址代替。在您電腦上請「註解掉」下面這行
 // const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 // ------------------------------------------------------------------
-// ★ 影片路徑設定 (Public 模式) ★
+// ★ 影片路徑智慧設定 ★
 // ------------------------------------------------------------------
-const repoBaseUrl = '/yuchi-portfolio/'; 
+// 自動偵測是否在 GitHub Pages，如果是就加上 repo 名稱
+const isGitHubPages = window.location.hostname.includes('github.io');
+const repoBaseUrl = isGitHubPages ? '/yuchi-portfolio/' : '/';
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -59,7 +63,7 @@ const Portfolio = () => {
       icon: <Layers className="w-6 h-6" />,
       description: "Redefined how users move continuously between devices. By abstracting complex networking protocols into a simple 'push past the edge' interaction, we reduced cognitive load and setup time by 40%.",
       details: "Focused on the 'handover' moment between operating systems. Created motion studies for cursor transitions and file drag-and-drop visualizations that feel physical rather than digital.",
-      // 影片若在 public 資料夾，使用字串檔名
+      // 影片檔名 (請確認 public 資料夾內有此檔案)
       video: "Cross_Device_Interaction_Animation_Concept.mp4"
     },
     {
@@ -400,21 +404,24 @@ const Portfolio = () => {
               </p>
             </section>
             
-            {/* 影片播放區域 */}
+            {/* 影片播放區域 - 自動偵測路徑 */}
             {project.video ? (
-              <div className="w-full rounded-2xl mt-8 overflow-hidden shadow-md border border-gray-100">
+              <div className="w-full rounded-2xl mt-8 overflow-hidden shadow-md border border-gray-100 bg-black">
                 <video 
-                  className="w-full h-auto block"
+                  key={project.video}
+                  className="w-full h-auto aspect-video block"
                   controls
                   autoPlay
                   loop
                   muted
                   playsInline
                 >
-                  {/* 自動偵測 repoBaseUrl，確保影片路徑正確 */}
-                  <source src={`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`} type="video/mp4" />
+                  <source src={`${repoBaseUrl}${project.video}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
+                <div className="text-xs text-gray-500 p-2 text-center bg-gray-50 border-t">
+                  Video source: {`${repoBaseUrl}${project.video}`}
+                </div>
               </div>
             ) : (
               <div className="w-full h-64 bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400 mt-8 border-2 border-dashed border-gray-200">
