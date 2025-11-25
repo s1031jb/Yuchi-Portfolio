@@ -11,17 +11,17 @@ import profileImage from './assets/yuchi.png';
 
 // [步驟 B - 線上預覽用]：
 // 為了讓您現在能在這裡看到畫面，我暫時使用網址。
-// 在您的電腦上，請把下面這行「註解掉」或刪除。
+// 在您的電腦上，當您啟用上面的 import 後，請把下面這行「註解掉」或刪除。
 // const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 // ------------------------------------------------------------------
-// ★ 影片路徑智慧設定 ★
+// ★ 影片路徑智慧設定 (Public 資料夾) ★
 // ------------------------------------------------------------------
 // 自動偵測是否在 GitHub Pages。
 // 如果網址包含 'github.io'，就加上 '/yuchi-portfolio/' 前綴。
 // 如果是 'localhost'，就使用根目錄 '/'。
 const isGitHubPages = window.location.hostname.includes('github.io');
-const repoBaseUrl = isGitHubPages ? '/yuchi-portfolio/' : '/';
+const repoBaseUrl = isGitHubPages ? '/Yuchi-Portfolio/' : '/';
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -419,13 +419,13 @@ const Portfolio = () => {
                   muted
                   playsInline
                 >
-                  {/* 使用 repoBaseUrl，自動加上正確的前綴 (如果是在本地就是空字串) */}
-                  <source src={`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`} type="video/mp4" />
+                  {/* 自動偵測路徑 */}
+                  <source src={`${repoBaseUrl}${project.video}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 {/* 除錯訊息：告訴您現在抓取的路徑是什麼 */}
-                <div className="text-xs text-gray-500 p-2 text-center bg-gray-50 border-t">
-                  Video source: {`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`}
+                <div className="text-xs text-gray-500 p-2 text-center bg-gray-50 border-t break-all">
+                  Video source: {`${repoBaseUrl}${project.video}`}
                 </div>
               </div>
             ) : (
