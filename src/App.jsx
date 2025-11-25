@@ -5,18 +5,21 @@ import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePoi
 // ★ 圖片設定 (關鍵步驟) ★
 // ------------------------------------------------------------------
 
-// 步驟 A (給您的 GitHub/本地專案用)：
-// 請將下面這行「取消註解」 (把前面的 // 拿掉)，這樣打包時才會把圖片打包進去
+// [步驟 A - 本地開發/GitHub 部署用]：
+// 請在您的電腦上把下面這行「取消註解」 (刪除前面的 //)，這樣打包時才會正確引入圖片
 import profileImage from './assets/yuchi.png';
 
-// 步驟 B (給目前的線上預覽用)：
-// 為了讓您現在能看到畫面，我暫時用網址代替。在您電腦上請「註解掉」下面這行
+// [步驟 B - 線上預覽用]：
+// 為了讓您現在能在這裡看到畫面，我暫時使用網址。
+// 在您的電腦上，請把下面這行「註解掉」或刪除。
 // const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 // ------------------------------------------------------------------
 // ★ 影片路徑智慧設定 ★
 // ------------------------------------------------------------------
-// 自動偵測是否在 GitHub Pages，如果是就加上 repo 名稱
+// 自動偵測是否在 GitHub Pages。
+// 如果網址包含 'github.io'，就加上 '/yuchi-portfolio/' 前綴。
+// 如果是 'localhost'，就使用根目錄 '/'。
 const isGitHubPages = window.location.hostname.includes('github.io');
 const repoBaseUrl = isGitHubPages ? '/yuchi-portfolio/' : '/';
 
@@ -64,7 +67,7 @@ const Portfolio = () => {
       description: "Redefined how users move continuously between devices. By abstracting complex networking protocols into a simple 'push past the edge' interaction, we reduced cognitive load and setup time by 40%.",
       details: "Focused on the 'handover' moment between operating systems. Created motion studies for cursor transitions and file drag-and-drop visualizations that feel physical rather than digital.",
       // 影片檔名 (請確認 public 資料夾內有此檔案)
-      video: "Cross_Device_Interaction_Animation_Concept.mp4"
+      video: "Laptop_Screen_Transition_Motion_Concept.mp4"
     },
     {
       id: 2,
@@ -404,7 +407,7 @@ const Portfolio = () => {
               </p>
             </section>
             
-            {/* 影片播放區域 - 自動偵測路徑 */}
+            {/* 影片播放區域 */}
             {project.video ? (
               <div className="w-full rounded-2xl mt-8 overflow-hidden shadow-md border border-gray-100 bg-black">
                 <video 
@@ -416,11 +419,13 @@ const Portfolio = () => {
                   muted
                   playsInline
                 >
-                  <source src={`${repoBaseUrl}${project.video}`} type="video/mp4" />
+                  {/* 使用 repoBaseUrl，自動加上正確的前綴 (如果是在本地就是空字串) */}
+                  <source src={`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
+                {/* 除錯訊息：告訴您現在抓取的路徑是什麼 */}
                 <div className="text-xs text-gray-500 p-2 text-center bg-gray-50 border-t">
-                  Video source: {`${repoBaseUrl}${project.video}`}
+                  Video source: {`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`}
                 </div>
               </div>
             ) : (
