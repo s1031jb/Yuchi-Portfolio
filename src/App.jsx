@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePointer2, Layers, Layout, PenTool } from 'lucide-react';
 
 // ------------------------------------------------------------------
-// ★ 圖片設定 (關鍵步驟) ★
+// ★ 圖片設定 (重要) ★
 // ------------------------------------------------------------------
 
 // [步驟 A - 本地開發/GitHub 部署用]：
@@ -11,15 +11,12 @@ import profileImage from './assets/yuchi.png';
 
 // [步驟 B - 線上預覽用]：
 // 為了讓您現在能在這裡看到畫面，我暫時使用網址。
-// 在您的電腦上，當您啟用上面的 import 後，請把下面這行「註解掉」或刪除。
+// 在您的電腦上，當您啟用上面的 import 後，這行可以註解掉或忽略。
 // const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 // ------------------------------------------------------------------
 // ★ 影片路徑智慧設定 (Public 資料夾) ★
 // ------------------------------------------------------------------
-// 自動偵測是否在 GitHub Pages。
-// 如果網址包含 'github.io'，就加上 '/yuchi-portfolio/' 前綴。
-// 如果是 'localhost'，就使用根目錄 '/'。
 const isGitHubPages = window.location.hostname.includes('github.io');
 const repoBaseUrl = isGitHubPages ? '/Yuchi-Portfolio/' : '/';
 
@@ -64,8 +61,13 @@ const Portfolio = () => {
       category: "System UX",
       tagline: "Designing a Smarter Cross-Screen Experience",
       icon: <Layers className="w-6 h-6" />,
-      description: "Redefined how users move continuously between devices. By abstracting complex networking protocols into a simple 'push past the edge' interaction, we reduced cognitive load and setup time by 40%.",
-      details: "Focused on the 'handover' moment between operating systems. Created motion studies for cursor transitions and file drag-and-drop visualizations that feel physical rather than digital.",
+      // ★ 更新 Overview 內容
+      description: "Designed a software-based cross-device workflow that allows users to move their cursor from one laptop to another simply by reaching the screen edge. By simplifying multi-device interaction, the experience reduces friction and helps users stay focused when working across multiple computers.",
+      // ★ 更新 Key Details 內容 (用 \n\n 分隔段落)
+      details: "Explored how cursor movement, keyboard focus, and file interactions should behave when transitioning between two separate devices.\n\nCreated motion studies for cursor travel across displays, cross-device drag-and-drop behavior, and copy/paste interactions for text and images.\n\nDesigned layout controls that let users adjust the relative position of their devices within the software for more intuitive cross-screen movement.",
+      // ★ 更新 Role 和 Tools
+      role: "SW Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind"],
       // 影片檔名 (請確認 public 資料夾內有此檔案)
       video: "Laptop_Screen_Transition_Motion_Concept.mp4"
     },
@@ -396,15 +398,23 @@ const Portfolio = () => {
           <div className="md:col-span-2 space-y-8">
             <section>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Overview</h3>
-              <p className="text-gray-600 leading-loose">
+              <p className="text-gray-600 leading-loose whitespace-pre-line">
                 {project.description}
               </p>
             </section>
+            
+            {/* ★ 修正重點：Key Details 間距調整
+               使用 split('\n\n') 和 mb-3 來精確控制間距。
+            */}
             <section>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Key Details</h3>
-              <p className="text-gray-600 leading-loose">
-                {project.details}
-              </p>
+              <div className="text-gray-600 leading-relaxed">
+                {project.details ? project.details.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="mb-3 last:mb-0">
+                    {paragraph}
+                  </p>
+                )) : "No details available."}
+              </div>
             </section>
             
             {/* 影片播放區域 */}
@@ -419,13 +429,11 @@ const Portfolio = () => {
                   muted
                   playsInline
                 >
-                  {/* 自動偵測路徑 */}
-                  <source src={`${repoBaseUrl}${project.video}`} type="video/mp4" />
+                  <source src={`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                {/* 除錯訊息：告訴您現在抓取的路徑是什麼 */}
                 <div className="text-xs text-gray-500 p-2 text-center bg-gray-50 border-t break-all">
-                  Video source: {`${repoBaseUrl}${project.video}`}
+                  Video source: {`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`}
                 </div>
               </div>
             ) : (
@@ -438,13 +446,17 @@ const Portfolio = () => {
           <div className="md:col-span-1 space-y-6">
              <div className="bg-gray-50 p-6 rounded-2xl">
                 <h4 className="font-bold text-gray-900 mb-4">Role</h4>
-                <p className="text-gray-600 text-sm mb-6">Lead Designer, Prototyping</p>
+                {/* Role 使用 whitespace-pre-line 確保換行顯示 */}
+                <p className="text-gray-600 text-sm mb-6 whitespace-pre-line">
+                  {project.role || "Lead Designer, Prototyping"}
+                </p>
                 
                 <h4 className="font-bold text-gray-900 mb-4">Tools</h4>
                 <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-white px-2 py-1 rounded border text-gray-600">Figma</span>
-                  <span className="text-xs bg-white px-2 py-1 rounded border text-gray-600">Protopie</span>
-                  <span className="text-xs bg-white px-2 py-1 rounded border text-gray-600">React</span>
+                  {/* Tools 改為讀取 project.tools */}
+                  {(project.tools || ["Figma", "Protopie", "React"]).map((tool, index) => (
+                    <span key={index} className="text-xs bg-white px-2 py-1 rounded border text-gray-600">{tool}</span>
+                  ))}
                 </div>
              </div>
           </div>
