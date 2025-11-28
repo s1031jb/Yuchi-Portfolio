@@ -58,17 +58,14 @@ const Portfolio = () => {
     {
       id: 1,
       title: "Seamless Multi-Device Flow",
-      category: "System UX",
+      category: "Multi-Device UX",
       tagline: "Designing a Smarter Cross-Screen Experience",
       icon: <Layers className="w-6 h-6" />,
-      // ★ 更新 Overview 內容
       description: "Designed a software-based cross-device workflow that allows users to move their cursor from one laptop to another simply by reaching the screen edge. By simplifying multi-device interaction, the experience reduces friction and helps users stay focused when working across multiple computers.",
-      // ★ 更新 Key Details 內容 (用 \n\n 分隔段落)
+      // ★ 修改：將 Developed 改為 Designed
       details: "Explored how cursor movement, keyboard focus, and file interactions should behave when transitioning between two separate devices.\n\nCreated motion studies for cursor travel across displays, cross-device drag-and-drop behavior, and copy/paste interactions for text and images.\n\nDesigned layout controls that let users adjust the relative position of their devices within the software for more intuitive cross-screen movement.",
-      // ★ 更新 Role 和 Tools
       role: "SW Planner\nUI/UX Designer",
       tools: ["Figma", "XMind"],
-      // 影片檔名 (請確認 public 資料夾內有此檔案)
       video: "Laptop_Screen_Transition_Motion_Concept.mp4"
     },
     {
@@ -78,7 +75,9 @@ const Portfolio = () => {
       tagline: "Simplifying System-Level Controls for Multi-Device Setups",
       icon: <MousePointer2 className="w-6 h-6" />,
       description: "A unified control center for high-performance peripherals. Moved away from 'driver' mental models to a 'device capability' model, allowing users to visually map buttons and macros effortlessly.",
-      details: "Designed the architecture for a modular UI that adapts based on connected devices. Solved key pain points in macro recording and lighting synchronization."
+      details: "Designed the architecture for a modular UI that adapts based on connected devices. Solved key pain points in macro recording and lighting synchronization.",
+      role: "SW Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind"]
     },
     {
       id: 3,
@@ -86,8 +85,12 @@ const Portfolio = () => {
       category: "Interaction Design",
       tagline: "A Faster Way to Access Commands Across Apps",
       icon: <Layout className="w-6 h-6" />,
-      description: "An overlay interface triggered by gesture or dedicated hardware key. Provides context-aware tools (like a color picker in Photoshop or mute in Zoom) in a radial UI.",
-      details: "Includes a highly responsive React-based prototype demonstrating <50ms latency feedback. Developed the 'muscle memory' positioning system for pro-users."
+      description: "Designed a radial shortcut interface triggered by a programmable button on the mouse. The wheel presents context-aware commands—grouped into two intuitive layers—to help users access frequently used actions without navigating deep menus.\n\nBy visualizing shortcuts in a circular layout, the design reduces cognitive load, improves discoverability, and supports faster, more consistent workflows.",
+      details: "Defined the interaction model for the two-layer wheel structure, including activation behavior, visual hierarchy, and transition patterns.\n\nCreated interactive prototypes to evaluate responsiveness, command selection accuracy, and the “muscle memory” positioning system that supports rapid expert usage.\n\nDesigned customization flows that let users assign apps and commands, balancing flexibility with simplicity.",
+      role: "SW Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind"],
+      // ★ 新增影片 (請將 Shortcut_Wheel.mp4 放入 public 資料夾)
+      video: "Shortcut_Wheel.mp4"
     },
     {
       id: 4,
@@ -96,7 +99,9 @@ const Portfolio = () => {
       tagline: "Helping Users Communicate Visually in Presentations",
       icon: <PenTool className="w-6 h-6" />,
       description: "A suite of cursor enhancements designed for remote work and digital presentations. Features include 'Spotlight', 'Magnify', and 'Laser' modes to direct audience attention.",
-      details: "Conducted accessibility research to ensure high-contrast modes work for color-blind users. Defined the animation curves for the 'trail' effect to feel smooth, not distracting."
+      details: "Conducted accessibility research to ensure high-contrast modes work for color-blind users. Defined the animation curves for the 'trail' effect to feel smooth, not distracting.",
+      role: "SW Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind"]
     },
     {
       id: 5,
@@ -105,7 +110,9 @@ const Portfolio = () => {
       tagline: "Optimizing the Custom PC Builder Journey",
       icon: <Layout className="w-6 h-6" />,
       description: "Revamped the customization configurator for gaming PCs. Simplified component compatibility checks and improved mobile responsiveness for complex data tables.",
-      details: "Resulted in a 15% increase in conversion rate for mobile users. Created a design system for component cards and specs."
+      details: "Resulted in a 15% increase in conversion rate for mobile users. Created a design system for component cards and specs.",
+      role: "SW Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind"]
     },
     {
       id: 6,
@@ -114,7 +121,9 @@ const Portfolio = () => {
       tagline: "Brand Identity & Lead Generation Web Design",
       icon: <Layout className="w-6 h-6" />,
       description: "Designed and built a responsive website for a high-volume real estate agent. Focused on trust, clarity of listings, and easy scheduling access.",
-      details: "Integrated MLS data feeds and designed a custom 'lifestyle search' filter."
+      details: "Integrated MLS data feeds and designed a custom 'lifestyle search' filter.",
+      role: "SW Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind"]
     },
     {
       id: 7,
@@ -123,7 +132,9 @@ const Portfolio = () => {
       tagline: "Mobile UI/UX Redesign",
       icon: <Layers className="w-6 h-6" />,
       description: "Modernized the interface for a utility app. Streamlined the 'scan to PDF' flow and reorganized the file management hierarchy.",
-      details: "Created a dark mode variant and improved touch targets for document editing tools."
+      details: "Created a dark mode variant and improved touch targets for document editing tools.",
+      role: "SW Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind"]
     }
   ];
 
@@ -343,7 +354,7 @@ const Portfolio = () => {
     <div className="max-w-6xl mx-auto px-6 py-32 animate-fade-in">
       <div className="mb-12 text-center md:text-left">
         <h2 className="text-4xl font-bold text-gray-900 mb-4">Selected Projects</h2>
-        <p className="text-gray-500 max-w-2xl text-lg">
+        <p className="text-gray-500 max-w-3xl text-lg">
           A collection of work focused on hardware-software integration and ecosystem design.
         </p>
       </div>
@@ -398,14 +409,15 @@ const Portfolio = () => {
           <div className="md:col-span-2 space-y-8">
             <section>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Overview</h3>
-              <p className="text-gray-600 leading-loose whitespace-pre-line">
-                {project.description}
-              </p>
+              <div className="text-gray-600 leading-relaxed">
+                {project.description ? project.description.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="mb-3 last:mb-0">
+                    {paragraph}
+                  </p>
+                )) : "No description available."}
+              </div>
             </section>
             
-            {/* ★ 修正重點：Key Details 間距調整
-               使用 split('\n\n') 和 mb-3 來精確控制間距。
-            */}
             <section>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Key Details</h3>
               <div className="text-gray-600 leading-relaxed">
@@ -429,11 +441,12 @@ const Portfolio = () => {
                   muted
                   playsInline
                 >
-                  <source src={`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`} type="video/mp4" />
+                  {/* 使用 repoBaseUrl，自動加上正確的前綴 */}
+                  <source src={`${repoBaseUrl}${project.video}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="text-xs text-gray-500 p-2 text-center bg-gray-50 border-t break-all">
-                  Video source: {`${repoBaseUrl === '/' ? '' : repoBaseUrl}${project.video}`}
+                  Video source: {`${repoBaseUrl}${project.video}`}
                 </div>
               </div>
             ) : (
@@ -446,14 +459,12 @@ const Portfolio = () => {
           <div className="md:col-span-1 space-y-6">
              <div className="bg-gray-50 p-6 rounded-2xl">
                 <h4 className="font-bold text-gray-900 mb-4">Role</h4>
-                {/* Role 使用 whitespace-pre-line 確保換行顯示 */}
                 <p className="text-gray-600 text-sm mb-6 whitespace-pre-line">
                   {project.role || "Lead Designer, Prototyping"}
                 </p>
                 
                 <h4 className="font-bold text-gray-900 mb-4">Tools</h4>
                 <div className="flex flex-wrap gap-2">
-                  {/* Tools 改為讀取 project.tools */}
                   {(project.tools || ["Figma", "Protopie", "React"]).map((tool, index) => (
                     <span key={index} className="text-xs bg-white px-2 py-1 rounded border text-gray-600">{tool}</span>
                   ))}
