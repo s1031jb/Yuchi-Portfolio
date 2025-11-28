@@ -7,12 +7,12 @@ import { Phone, Mail, Linkedin, ArrowRight, ChevronRight, ExternalLink, MousePoi
 
 // [步驟 A - 本地開發/GitHub 部署用]：
 // 請在您的電腦上把下面這行「取消註解」 (刪除前面的 //)，這樣打包時才會正確引入圖片
-import profileImage from './assets/yuchi.png';
+// import profileImage from './assets/yuchi.png';
 
 // [步驟 B - 線上預覽用]：
 // 為了讓您現在能在這裡看到畫面，我暫時使用網址。
 // 在您的電腦上，當您啟用上面的 import 後，這行可以註解掉或忽略。
-// const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
+const profileImage = "https://github.com/user-attachments/assets/21163382-6a81-414d-b111-080b9259988f";
 
 // ------------------------------------------------------------------
 // ★ 影片路徑智慧設定 (Public 資料夾) ★
@@ -47,7 +47,7 @@ const Portfolio = () => {
   const personalInfo = {
     name: "Yuchi Chang",
     title: "Designing the future of multi-device interaction.",
-    bio: "Senior Interaction Designer specializing in peripheral software ecosystems. I craft intuitive, multi-device experiences that make keyboards, mice, hubs, and styluses feel seamless and delightful.",
+    bio: "I design clear, efficient interactions for keyboards, mice, hubs, styluses, and cross-screen workflows, crafting hardware-aware software experiences that feel seamless and dependable.",
     phone: "+886 958 644 522",
     email: "s1031jb@gmail.com",
     linkedin: "linkedin.com/in/yuchichang", 
@@ -61,11 +61,10 @@ const Portfolio = () => {
       category: "Multi-Device UX",
       tagline: "Designing a Smarter Cross-Screen Experience",
       icon: <Layers className="w-6 h-6" />,
-      description: "Designed a software-based cross-device workflow that allows users to move their cursor from one laptop to another simply by reaching the screen edge. By simplifying multi-device interaction, the experience reduces friction and helps users stay focused when working across multiple computers.",
-      // ★ 修改：將 Developed 改為 Designed
-      details: "Explored how cursor movement, keyboard focus, and file interactions should behave when transitioning between two separate devices.\n\nCreated motion studies for cursor travel across displays, cross-device drag-and-drop behavior, and copy/paste interactions for text and images.\n\nDesigned layout controls that let users adjust the relative position of their devices within the software for more intuitive cross-screen movement.",
-      role: "SW Planner\nUI/UX Designer",
-      tools: ["Figma", "XMind"],
+      description: "Designed a cross-device workflow that lets users move their cursor between two laptops by simply reaching the screen edge.\n\nUsers can copy/paste content or drag and drop files across devices as easily as working on a single computer. The experience also carries the entire peripheral ecosystem (keyboard, mouse, and external displays) across devices, enabling truly seamless multi-computer workflows.",
+      details: "• Defined cursor movement, keyboard focus, and file-interaction behavior during cross-device transitions.\n• Created motion studies for cursor travel, cross-display drag-and-drop, and clipboard interactions.\n• Designed controls for adjusting the relative screen position of devices to support intuitive cross-screen movement.\n• Collaborated with engineering to validate latency, edge-detection timing, and consistent interaction behavior across device types.",
+      role: "Software Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind", "Jira"],
       video: "Laptop_Screen_Transition_Motion_Concept.mp4"
     },
     {
@@ -76,8 +75,8 @@ const Portfolio = () => {
       icon: <MousePointer2 className="w-6 h-6" />,
       description: "A unified control center for high-performance peripherals. Moved away from 'driver' mental models to a 'device capability' model, allowing users to visually map buttons and macros effortlessly.",
       details: "Designed the architecture for a modular UI that adapts based on connected devices. Solved key pain points in macro recording and lighting synchronization.",
-      role: "SW Planner\nUI/UX Designer",
-      tools: ["Figma", "XMind"]
+      role: "Software Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind", "Jira"]
     },
     {
       id: 3,
@@ -85,11 +84,10 @@ const Portfolio = () => {
       category: "Interaction Design",
       tagline: "A Faster Way to Access Commands Across Apps",
       icon: <Layout className="w-6 h-6" />,
-      description: "Designed a radial shortcut interface triggered by a programmable button on the mouse. The wheel presents context-aware commands—grouped into two intuitive layers—to help users access frequently used actions without navigating deep menus.\n\nBy visualizing shortcuts in a circular layout, the design reduces cognitive load, improves discoverability, and supports faster, more consistent workflows.",
-      details: "Defined the interaction model for the two-layer wheel structure, including activation behavior, visual hierarchy, and transition patterns.\n\nCreated interactive prototypes to evaluate responsiveness, command selection accuracy, and the “muscle memory” positioning system that supports rapid expert usage.\n\nDesigned customization flows that let users assign apps and commands, balancing flexibility with simplicity.",
-      role: "SW Planner\nUI/UX Designer",
-      tools: ["Figma", "XMind"],
-      // ★ 新增影片 (請將 Shortcut_Wheel.mp4 放入 public 資料夾)
+      description: "Designed a radial shortcut wheel triggered by a programmable mouse button, enabling quick access to frequently used commands without navigating deep menus.\n\nBy visualizing shortcuts in a circular layout, the design reduces cognitive load, improves discoverability, and supports faster, more consistent workflows.",
+      details: "• Defined the two-layer interaction model, including activation, timing, and transitions.\n• Built prototypes to evaluate responsiveness, accuracy, and overall ease of selection.\n• Identified the most-used apps and shortcuts from usage data and set them as smart defaults for an out-of-the-box experience.\n• Designed customization options for assigning apps and commands to each layer.\n• Worked with engineering to align input behavior, visual feedback, and interaction timing.",
+      role: "Software Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind", "Jira"],
       video: "Shortcut_Wheel.mp4"
     },
     {
@@ -100,19 +98,23 @@ const Portfolio = () => {
       icon: <PenTool className="w-6 h-6" />,
       description: "A suite of cursor enhancements designed for remote work and digital presentations. Features include 'Spotlight', 'Magnify', and 'Laser' modes to direct audience attention.",
       details: "Conducted accessibility research to ensure high-contrast modes work for color-blind users. Defined the animation curves for the 'trail' effect to feel smooth, not distracting.",
-      role: "SW Planner\nUI/UX Designer",
-      tools: ["Figma", "XMind"]
+      role: "Software Planner\nUI/UX Designer",
+      tools: ["Figma", "XMind", "Jira"]
     },
     {
       id: 5,
-      title: "iBUYPOWER E-Commerce Experience",
+      // ★ 更新標題
+      title: "Gaming PC Customization",
       category: "Web Design",
-      tagline: "Optimizing the Custom PC Builder Journey",
+      // ★ 更新副標題
+      tagline: "Optimizing the Component Selection and Build Experience",
       icon: <Layout className="w-6 h-6" />,
-      description: "Revamped the customization configurator for gaming PCs. Simplified component compatibility checks and improved mobile responsiveness for complex data tables.",
-      details: "Resulted in a 15% increase in conversion rate for mobile users. Created a design system for component cards and specs.",
+      // ★ 更新 Overview
+      description: "Redesigned the gaming PC customization flow to make selecting components faster and more intuitive. Simplified compatibility checks, clarified upgrade paths, and improved mobile usability so users can build a system confidently without getting lost in technical details.",
+      // ★ 更新 Key Details (Bullet Points)
+      details: "• Streamlined the component-selection experience by improving hierarchy, visual clarity, and comparison flows.\n• Reworked compatibility logic and messaging to help users understand which parts work together without interrupting their workflow.\n• Improved responsiveness and readability of complex data tables for mobile devices.\n• Built reusable UI patterns for component cards, specs, and configuration steps to support future product updates.",
       role: "SW Planner\nUI/UX Designer",
-      tools: ["Figma", "XMind"]
+      tools: ["Figma", "XMind", "Jira"]
     },
     {
       id: 6,
@@ -123,7 +125,7 @@ const Portfolio = () => {
       description: "Designed and built a responsive website for a high-volume real estate agent. Focused on trust, clarity of listings, and easy scheduling access.",
       details: "Integrated MLS data feeds and designed a custom 'lifestyle search' filter.",
       role: "SW Planner\nUI/UX Designer",
-      tools: ["Figma", "XMind"]
+      tools: ["Figma", "XMind", "Jira"]
     },
     {
       id: 7,
@@ -134,7 +136,7 @@ const Portfolio = () => {
       description: "Modernized the interface for a utility app. Streamlined the 'scan to PDF' flow and reorganized the file management hierarchy.",
       details: "Created a dark mode variant and improved touch targets for document editing tools.",
       role: "SW Planner\nUI/UX Designer",
-      tools: ["Figma", "XMind"]
+      tools: ["Figma", "XMind", "Jira"]
     }
   ];
 
@@ -237,7 +239,7 @@ const Portfolio = () => {
         <div className="order-2 md:order-1 space-y-8 animate-fade-in-up self-center pb-24">
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
-              Designing the future of <span className="text-blue-600">multi-device</span> interaction.
+              Designing <span className="text-[#1A73E8]">intuitive</span> device <span className="text-[#1A73E8]">experiences</span>.
             </h1>
           </div>
           <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
@@ -421,11 +423,18 @@ const Portfolio = () => {
             <section>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Key Details</h3>
               <div className="text-gray-600 leading-relaxed">
-                {project.details ? project.details.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="mb-3 last:mb-0">
-                    {paragraph}
-                  </p>
-                )) : "No details available."}
+                {/* ★ 更新：如果 details 包含 \n (換行) 或 • (bullet)，則分段顯示 */}
+                {project.details ? project.details.split('\n').map((paragraph, index) => {
+                   // 判斷是否為空行，避免多餘空白
+                   if (!paragraph.trim()) return null; 
+                   return (
+                    <p key={index} className="mb-2 last:mb-0 flex">
+                      {/* 簡單處理 bullet point 的縮排 */}
+                      {paragraph.trim().startsWith('•') && <span className="mr-2">•</span>}
+                      <span>{paragraph.trim().replace(/^•\s*/, '')}</span>
+                    </p>
+                   );
+                }) : "No details available."}
               </div>
             </section>
             
