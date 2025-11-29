@@ -47,7 +47,7 @@ UI/UX Designer`,tools:["Figma","XMind","Jira"],video:"Laptop_Screen_Transition_M
 • Defined charging and data priority flows conceptually, ensuring the system behaves intelligently when multiple devices compete for bandwidth or power.
 • Created exception and alert behaviors to help users detect unusual device states early.
 • Developed scalable UI patterns to support different hub configurations while maintaining clarity and simplicity.
-• Worked closely with firmware and electrical engineering teams to align user experience with system capabilities.`,role:`SW Planner
+• Worked closely with firmware and engineering teams to align user experience with system capabilities.`,role:`SW Planner
 UI/UX Designer`,tools:["Figma","XMind","Jira"]},{id:3,title:"Visual Shortcut Wheel",category:"Interaction Design",tagline:"Smarter Shortcuts, Simpler Workflow.",icon:p.jsx(Kl,{className:"w-6 h-6"}),description:`Designed a radial shortcut wheel triggered by a programmable mouse button, enabling quick access to frequently used commands without navigating deep menus.
 
 By visualizing shortcuts in a circular layout, the design reduces cognitive load, improves discoverability, and supports faster, more consistent workflows.`,details:`• Defined the two-layer interaction model, including activation, timing, and transitions.
